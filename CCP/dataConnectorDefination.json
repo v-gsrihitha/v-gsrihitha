@@ -9,18 +9,18 @@
             "id": "GCPMonitorCCPDefinition",
             "title": "Google Cloud Platform Cloud Monitoring",
             "publisher": "Microsoft",
-            "descriptionMarkdown": "This data connector allows ingesting logs from [Google Cloud Platform Cloud Monitoring](https://cloud.google.com/monitoring/api/v3) into Microsoft Sentinel. The data connector is built on Microsoft Sentinel Codeless Connector Platform. It supports DCR-based ingestion time transformations that parses the received security data in destination tables so that queries don't need to parse it again, thus resulting in better performance.",
+            "descriptionMarkdown": "The Google Cloud Platform Cloud Monitoring data connector provides the capability to ingest [GCP Monitoring metrics](https://cloud.google.com/monitoring/api/metrics_gcp) into Microsoft Sentinel using the GCP Monitoring API. Refer to [GCP Monitoring API documentation](https://cloud.google.com/monitoring/api/v3) for more information.",
             "graphQueriesTableName": "GCPMonitorlogs_CL",
             "graphQueries": [
                 {
                     "metricName": "Total events received",
-                    "legend": "GCP Monitor Events",
+                    "legend": "Google Cloud Platform Cloud Monitoring Events",
                     "baseQuery": "{{graphQueriesTableName}}"
                 }
             ],
             "sampleQueries": [
                 {
-                    "description": "Get Sample of GCP Monitor logs",
+                    "description": "Get Sample of Google Cloud Platform Cloud Monitoring logs",
                     "query": "{{graphQueriesTableName}}\n | take 10"
                 }
             ],
@@ -85,7 +85,7 @@
                         {
                             "type": "Markdown",
                             "parameters": {
-                                "content": "#### 3. Connect new collectors \n To enable GCP Monitor Logs for Microsoft Sentinel, click the Add new collector button, fill the required information in the context pane and click on Connect."
+                                "content": "#### 3. Connect new collectors \n To enable Google Cloud Platform Cloud Monitoring Logs for Microsoft Sentinel, click the Add new collector button, fill the required information in the context pane and click on Connect."
                             }
                         },
                         {
@@ -97,7 +97,7 @@
                             "parameters": {}
                         }
                     ],
-                     "title": "Connect GCP Cloud Monitoring to Microsoft Sentinel"
+                     "title": "Connect Google Cloud Platform Cloud Monitoring to Microsoft Sentinel"
                 }
             ]
         }

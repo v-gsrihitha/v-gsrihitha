@@ -9,48 +9,68 @@
             "name": "GCPMonitorlogs_CL",
             "columns": [
                 {
-                    "name": "insertId",
+                    "name": "metricLabelsLoadbalanced",
                     "type": "string"
                 },
                 {
-                    "name": "jsonPayload",
+                    "name": "valueDoubleValue",
+                    "type": "double"
+                },
+                {
+                    "name": "metricLabelsDeviceType",
                     "type": "string"
                 },
                 {
-                    "name": "logName",
+                    "name": "metricLabelsInstanceName",
                     "type": "string"
                 },
                 {
-                    "name": "receiveTimestamp",
+                    "name": "metricLabelsDeviceName",
                     "type": "string"
                 },
                 {
-                    "name": "resource",
+                    "name": "metricLabelsStorageType",
                     "type": "string"
                 },
                 {
-                    "name": "timestamp",
+                    "name": "metricType",
                     "type": "string"
                 },
                 {
-                    "name": "severity",
+                    "name": "resourceType",
                     "type": "string"
                 },
                 {
-                    "name": "httpRequest",
+                    "name": "resourceLabelsProjectId",
                     "type": "string"
                 },
                 {
-                    "name": "spanId",
+                    "name": "resourceLabelsInstanceId",
                     "type": "string"
                 },
                 {
-                    "name": "TimeGenerated",
-                    "type": "datetime"
+                    "name": "resourceLabelsZone",
+                    "type": "string"
                 },
                 {
-                    "name": "metric",
+                    "name": "metricKind",
                     "type": "string"
+                },
+                {
+                    "name": "valueType",
+                    "type": "string"
+                },
+                {
+                    "name": "intervalStartTime",
+                    "type": "timestamp"
+                },
+                {
+                    "name": "intervalEndTime",
+                    "type": "timestamp"
+                },
+                {
+                    "name": "valueInt64Value",
+                    "type": "double"
                 }
             ]
         }

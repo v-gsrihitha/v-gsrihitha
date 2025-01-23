@@ -10,44 +10,68 @@
             "Custom-GCPMonitor": {
                 "columns": [
                     {
-                        "name": "insertId",
+                        "name": "metricLabelsLoadbalanced",
                         "type": "string"
                     },
                     {
-                        "name": "jsonPayload",
+                        "name": "valueDoubleValue",
+                        "type": "double"
+                    },
+                    {
+                        "name": "metricLabelsDeviceType",
                         "type": "string"
                     },
                     {
-                        "name": "logName",
+                        "name": "metricLabelsInstanceName",
                         "type": "string"
                     },
                     {
-                        "name": "receiveTimestamp",
+                        "name": "metricLabelsDeviceName",
                         "type": "string"
                     },
                     {
-                        "name": "resource",
+                        "name": "metricLabelsStorageType",
                         "type": "string"
                     },
                     {
-                        "name": "severity",
+                        "name": "metricType",
                         "type": "string"
                     },
                     {
-                        "name": "httpRequest",
+                        "name": "resourceType",
                         "type": "string"
                     },
                     {
-                        "name": "spanId",
+                        "name": "resourceLabelsProjectId",
                         "type": "string"
                     },
                     {
-                        "name": "timestamp",
+                        "name": "resourceLabelsInstanceId",
                         "type": "string"
                     },
                     {
-                        "name": "metric",
+                        "name": "resourceLabelsZone",
                         "type": "string"
+                    },
+                    {
+                        "name": "metricKind",
+                        "type": "string"
+                    },
+                    {
+                        "name": "valueType",
+                        "type": "string"
+                    },
+                    {
+                        "name": "intervalStartTime",
+                        "type": "timestamp"
+                    },
+                    {
+                        "name": "intervalEndTime",
+                        "type": "timestamp"
+                    },
+                    {
+                        "name": "valueInt64Value",
+                        "type": "double"
                     }
                 ]
             }
