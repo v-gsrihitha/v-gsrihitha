@@ -37,7 +37,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "metric",
+                        "name": "metric_labels_device_name_s",
                         "type": "string"
                     },
                     {
@@ -78,7 +78,7 @@
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "[variables('workspaceResourceId')]",
+                    "workspaceResourceId": "{{workspaceResourceId}}",
                     "name": "clv2ws1"
                 }
             ]
@@ -91,7 +91,7 @@
                 "destinations": [
                     "clv2ws1"
                 ],
-                "transformKql": "source | extend TimeGenerated = now()",
+                "transformKql": "source | extend metric_labels_device_name_s= TimeGenerated = now()",
                 "outputStream": "Custom-GCPMonitorlogs_CL"
             }
         ]
