@@ -79,13 +79,19 @@
                         {
                             "type": "Markdown",
                             "parameters": {
-                                "content": "#### 2. Enable Monitoring logs \n In your GCP account, navigate to the Monitor section. Navigate to Dashboards, Create a new dashboard and add a widget. Refer the document(https://cloud.google.com/logging/docs/alerting/monitoring-logs)."
+                                "content": "#### 2. To Connect Monitoring logs \n Navigate to Sink in the GCP account(monitor-logs-sentinel-sink) and Add a query (protoPayload.serviceName = monitoring.googleapis.com) and Save it."
                           }
                         },
                         {
                             "type": "Markdown",
                             "parameters": {
-                                "content": "#### 3. Connect new collectors \n To enable Google Cloud Platform Cloud Monitoring Logs for Microsoft Sentinel, click the Add new collector button, fill the required information in the context pane and click on Connect."
+                                "content": "#### 3. Enable Monitoring logs \n Enable Monitoring logs \nIn your GCP account, navigate to the Monitor section. Navigate to Dashboards, Create a new dashboard and add a widget, Add a specific widget according to the specifications. Refer the document(https://cloud.google.com/logging/docs/alerting/monitoring-logs)."
+                            }
+                        },
+                        {
+                            "type": "Markdown",
+                            "parameters": {
+                                "content": "#### 4. Connect new collectors \n To enable Google Cloud Platform Cloud Monitoring Logs for Microsoft Sentinel, click the Add new collector button, fill the required information in the context pane and click on Connect."
                             }
                         },
                         {

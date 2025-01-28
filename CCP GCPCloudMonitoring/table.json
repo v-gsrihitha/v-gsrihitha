@@ -25,7 +25,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "TimeGenerated [UTC]",
+                    "name": "TimeGenerated",
                     "type": "datetime"
                 },
                 {
@@ -37,59 +37,59 @@
                     "type": "string"
                 },
                 {
-                    "name": "metric_labels_device_name_s",
+                    "name": "metric_labels_device_name",
                     "type": "string"
                 },
                 {
-                    "name": "metric_labels_storage_type_s",
+                    "name": "metric_labels_storage_type",
                     "type": "string"
                 },
                 {
-                    "name": "metric_labels_device_type_s",
+                    "name": "metric_labels_device_type",
                     "type": "string"
                 },
                 {
-                    "name": "metric_labels_instance_name_s",
+                    "name": "metric_labels_instance_name",
                     "type": "string"
                 },
                 {
-                    "name": "metric_type_s",
+                    "name": "metric_type",
                     "type": "string"
                 },
                 {
-                    "name": "resource_type_s",
+                    "name": "resource_type",
                     "type": "string"
                 },
                 {
-                    "name": "resource_labels_zone_s",
+                    "name": "resource_labels_zone",
                     "type": "string"
                 },
                 {
-                    "name": "resource_labels_instance_id_s",
+                    "name": "resource_labels_instance_id",
                     "type": "string"
                 },
                 {
-                    "name": "resource_labels_project_id_s",
+                    "name": "resource_labels_project_id",
                     "type": "string"
                 },
                 {
-                    "name": "metricKind_s",
+                    "name": "metricKind",
                     "type": "string"
                 },
                 {
-                    "name": "valueType_s",
+                    "name": "valueType",
                     "type": "string"
                 },
                 {
-                    "name": "interval_startTime_t",
+                    "name": "interval_startTime",
                     "type": "timestamp"
                 },
                 {
-                    "name": "interval_endTime_t",
+                    "name": "interval_endTime",
                     "type": "timestamp"
                 },
                 {
-                    "name": "value_int64Value_d",
+                    "name": "value_int64Value",
                     "type": "dynamic"
                 },
                 {
@@ -97,7 +97,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "_ResourceId",
+                    "name": "ResourceId",
                     "type": "string"
                 }
             ]
