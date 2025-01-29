@@ -9,32 +9,12 @@
             "name": "GCPMonitorlogs_CL",
             "columns": [
                 {
-                    "name": "TenantId",
-                    "type": "string"
-                },
-                {
                     "name": "SourceSystem",
-                    "type": "string"
-                },
-                {
-                    "name": "MG",
-                    "type": "string"
-                },
-                {
-                    "name": "ManagementGroupName",
                     "type": "string"
                 },
                 {
                     "name": "TimeGenerated",
                     "type": "datetime"
-                },
-                {
-                    "name": "Computer",
-                    "type": "string"
-                },
-                {
-                    "name": "RawData",
-                    "type": "string"
                 },
                 {
                     "name": "metric_labels_device_name",
@@ -82,23 +62,15 @@
                 },
                 {
                     "name": "interval_startTime",
-                    "type": "timestamp"
+                    "type": "datetime"
                 },
                 {
                     "name": "interval_endTime",
-                    "type": "timestamp"
+                    "type": "datetime"
                 },
                 {
                     "name": "value_int64Value",
                     "type": "dynamic"
-                },
-                {
-                    "name": "Type",
-                    "type": "string"
-                },
-                {
-                    "name": "ResourceId",
-                    "type": "string"
                 }
             ]
         }
