@@ -50,7 +50,7 @@ resource "google_logging_project_sink" "sentinel-sink" {
   destination = "pubsub.googleapis.com/projects/${data.google_project.project.project_id}/topics/${var.topic-name}"
   depends_on = [google_pubsub_topic.sentinelcloudids-topic]
 
-  filter = "protoPayload.serviceName=ids.googleapis.com OR logName=projects/msccp-test/logs/ids.googleapis.com%2Fthreat OR resource.type=ids.googleapis.com/Endpoint"
+  filter = "protoPayload.serviceName=ids.googleapis.com OR (resource.type=ids.googleapis.com/Endpoint) OR (resource.type=ids.googleapis.com/Endpoint AND jsonPayload.alert_severity=(HIGH OR CRITICAL))"
   unique_writer_identity = true
 }
 
@@ -60,7 +60,7 @@ resource "google_logging_organization_sink" "sentinel-organization-sink" {
   org_id = var.organization-id
   destination = "pubsub.googleapis.com/projects/${data.google_project.project.project_id}/topics/${var.topic-name}"
 
-  filter = "protoPayload.serviceName=ids.googleapis.com OR logName=projects/msccp-test/logs/ids.googleapis.com%2Fthreat OR resource.type=ids.googleapis.com/Endpoint"
+  filter = "protoPayload.serviceName=ids.googleapis.com OR (resource.type=ids.googleapis.com/Endpoint) OR (resource.type=ids.googleapis.com/Endpoint AND jsonPayload.alert_severity=(HIGH OR CRITICAL))"
   include_children = true
 }
 
