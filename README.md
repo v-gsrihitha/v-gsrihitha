@@ -9,7 +9,7 @@
 <a name="intro">
 
 ## Introduction
-The Google Cloud Platform IDS Codeless Connector for Microsoft Sentinel enables seamless integration of Google Cloud Platform's IDS logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Conector Platform(CCP), this connector simplifies the process of collecting and ingesting IDS traffic logs, IDS threat logs and IDS audit logs from Google Cloud Platform into Sentinel.
+The Google Cloud Platform IDS Codeless Connector for Microsoft Sentinel enables seamless integration of Google Cloud Platform's IDS logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Conector Platform(CCP), this connector simplifies the process of collecting and ingesting Cloud IDS traffic logs, threat logs and audit logs from Google Cloud Platform into Sentinel.
 
 
 <a name="step2">
