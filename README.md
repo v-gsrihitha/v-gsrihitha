@@ -9,7 +9,7 @@
 <a name="intro">
 
 ## Introduction
-The Google Cloud Platform IDS Codeless Connector for Microsoft Sentinel enables seamless integration of Google Cloud Platform's IDS logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Conector Platform(CCP), this connector simplifies the process of collecting and ingesting Cloud IDS traffic logs, threat logs and audit logs from Google Cloud Platform into Sentinel.
+The Google Cloud Platform IDS Codeless Connector for Microsoft Sentinel enables seamless integration of Google Cloud Platform's IDS logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Connector Platform(CCP), this connector simplifies the process of collecting and ingesting Cloud IDS traffic logs, threat logs and audit logs from Google Cloud Platform into Sentinel.
 
 
 <a name="step2">
@@ -32,7 +32,6 @@ To generate the above resources, you must execute the following terraform script
 
 ## Steps to execute Terrraform scripts for Log Setup
 To access the terraform script for Log Setup [Click here](https://github.com/v-gsrihitha/v-gsrihitha/tree/main/Terraform-CloudIDS).
-- After accessing the log setup file, edit the project id as per your project.
 - Launch the cloud shell in Google Cloud Console.
 - Execute the below mentioned commands.
 - create a directory
@@ -55,10 +54,14 @@ To access the terraform script for Log Setup [Click here](https://github.com/v-g
    ```
    terraform plan
    ```
+   Once you execute this command it will ask to "Enter your project ID". Please enter your GCP Project ID.
+  
 - Executes the actions proposed in the Terraform plan to create, update, or destroy resources in your infrastructure.
    ```
    terraform apply
    ```
+   Once you execute this command it will again ask to "Enter your project ID". Please enter your GCP Project ID one more time.
+  
 - After successfully executing the Log Setup file, `topic name`, `subscription name` is generated in the GCP Project. Save those details for future reference.
 
 <a name="auth">
