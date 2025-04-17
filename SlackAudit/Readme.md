@@ -13,7 +13,7 @@ The Slack Codeless Connector for Microsoft Sentinel enables seamless integration
 
 ## Prerequisites
 The below mentioned resources are required to connect SlackAudit with Sentinel.
-- Access Token
+- API Key
 - Actions
 
 <a name="token">
@@ -34,6 +34,8 @@ The below mentioned resources are required to connect SlackAudit with Sentinel.
 - Go to your App's Basic Information section to find the Client ID and Client Secret.
 
 - After sending the request, you'll receive a response containing your access token.
+
+- While connecting to sentinel, In the API Key field, enter the access token.
 
 <a name="action">
 
