@@ -20,18 +20,18 @@ The below mentioned resources are required to connect SlackAudit with Sentinel.
 
 ## Steps to get the Access token from the Slack
 - Create an App from scratch.
-- In your App's settings, navigate to OAuth & Permissions, add the necessary OAuth scopes and add a Redirect URL (this is where Slack will send the authorization code).
-- In the left menu, click on Manage Distribution, Under Share Your App with Other Workspaces, ensure all four checklist items have green checkmarks.
-- Under Share Your App with Your Workspace, copy the Sharable URL, Paste it into a browser while logged in as the Owner of your Slack Enterprise Grid.
+- In your App's settings, navigate to **OAuth & Permissions**, add the necessary OAuth scopes(auditlogs:read) and add a Redirect URL (this is where Slack will send the authorization code).
+- In the left menu, click on Manage Distribution, under **Share Your App with Other Workspaces**, ensure all four checklist items have green checkmarks.
+- Under **Share Your App with Your Workspace**, copy the **Sharable URL**, paste it into a browser while logged in as the owner of your Slack Enterprise Grid.
 - Slack will redirect you to your specified redirect_uri and append a verification code to the URL.
-- Exchange Code for Access Token : Open the Insomnia app (or use cURL in your terminal), and use the following cURL command to exchange the code for an access token
+- **Exchange Code for Access Token** : Open the Insomnia app (or use Curl in your terminal), and use the following Curl command to exchange the code for an access token
 
   curl -F code=YOUR_CODE \
      -F client_id=YOUR_CLIENT_ID \
      -F client_secret=YOUR_CLIENT_SECRET \
      https://slack.com/api/oauth.v2.access
 
-- Go to your App's Basic Information section to find the Client ID and Client Secret.
+- Go to your app's **Basic Information** section to find the Client ID and Client Secret.
 
 - After sending the request, you'll receive a response containing your access token.
 
