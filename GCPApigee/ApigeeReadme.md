@@ -1,4 +1,4 @@
-# Integrating Google Apigee into Microsoft Sentinel
+# Integrating Google ApigeeX into Microsoft Sentinel
 ## Table of contents
 - [Introduction](#intro)
 - [Prerequisites](#step2)
@@ -9,7 +9,7 @@
 <a name="intro">
 
 ## Introduction
-The Google Apigee Codeless Connector for Microsoft Sentinel enables seamless integration of Google Apigee logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Connector Platform(CCP), this connector simplifies the process of collecting and ingesting Google Apigee audit logs from Google Cloud Platform into Sentinel.
+The Google ApigeeX Codeless Connector for Microsoft Sentinel enables seamless integration of Google ApigeeX logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Connector Platform(CCP), this connector simplifies the process of collecting and ingesting Google ApigeeX audit logs from Google Cloud Platform into Sentinel.
 
 
 <a name="step2">
