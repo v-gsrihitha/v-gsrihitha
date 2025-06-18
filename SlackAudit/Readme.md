@@ -13,8 +13,15 @@ The Slack Codeless Connector for Microsoft Sentinel enables seamless integration
 
 ## Prerequisites
 The below mentioned resources are required to connect SlackAudit with Sentinel.
+- UserName
 - API Key
 - Actions
+
+<a name="UserName">
+
+## UserName
+
+- While connecting to sentinel, In the UserName field, you can enter the name of the user who created the Slack app.
 
 <a name="token">
 
