@@ -6,21 +6,30 @@
             "Type": "String",
             "Description": "Enter the ARN name for the role. The name must start with 'OIDC_', otherwise the connector will not function properly.",
             "AllowedPattern": "OIDC_[-_a-zA-Z0-9]+",
-            "Default": "OIDC_StrataLogsSentinelRole"
+            "Default": "OIDC_IllumioLogsSentinelRole"
         },
         "BucketName": {
             "Type": "String",
             "AllowedPattern": "^[a-z0-9][a-z0-9-.]{1,61}[a-z0-9]$",
             "Description": "Enter the name of the S3 bucket. Bucket name must be unique within the global namespace and follow the bucket naming rules.",
-            "Default": "sentinel-Strata-logs-bucket"
+            "Default": "sentinel-illumio-logs-bucket"
         },
         "ExternalId": {
             "Type": "String",
-            "Default": "528298"
+            "Description": "Enter your desired external ID to be used"
         },
         "SentinelWorkspaceId": {
             "Type": "String",
             "Description": "Enter the Microsoft Sentinel Workspace ID"
+        },
+        "StrataRoleName": {
+            "Type": "String",
+            "Default": "StrataLogForwardingRole",
+            "Description": "Strata Role Name"
+        },
+        "AWSAccountId": {
+            "Type": "String",
+            "Description": "Strata Logging AWS Account ID"
         }
     },
     "Resources": {
@@ -35,7 +44,7 @@
                 },
                 "Policies": [
                     {
-                        "PolicyName": "StrataLoggingPolicy",
+                        "PolicyName": "IllumioLoggingPolicy",
                         "PolicyDocument": {
                             "Version": "2012-10-17",
                             "Statement": [
@@ -57,62 +66,37 @@
                 ]
             }
         },
-        "StrataLogsAwsIamRole": {
+        "StrataS3LoggingRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
-                "RoleName": "Strata-logs-role",
+                "RoleName": {
+                    "Ref": "StrataRoleName"
+                },
                 "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": {
-                        "Effect": "Allow",
-                        "Principal": {
-                            "AWS": "857003445768"
-                        },
-                        "Action": [
-                            "sts:AssumeRole"
-                        ],
-                        "Condition": {
-                            "StringEquals": {
-                                "Sts:ExternalId": {
-                                    "Ref": "ExternalId"
-                                }
-                            }
-                        }
-                    }
+                    "Fn::Sub": "{\"Version\": \"2012-10-17\", \"Statement\": [{ \"Effect\": \"Allow\", \"Principal\": { \"AWS\": \"arn:aws:iam::${AWSAccountId}:root\" }, \"Action\": \"sts:AssumeRole\", \"Condition\": { \"StringEquals\": { \"sts:ExternalId\": \"${ExternalId}\" } } }]}"
                 },
                 "Policies": [
                     {
-                        "PolicyName": "can-see-bucket",
+                        "PolicyName": "StrataS3PutPolicy",
                         "PolicyDocument": {
                             "Version": "2012-10-17",
-                            "Statement": {
-                                "Effect": "Allow",
-                                "Sid": "StrataCanSeeBucket",
-                                "Action": [
-                                    "s3:ListBucket",
-                                    "s3:ListBucketVersions"
-                                ],
-                                "Resource": {
-                                    "Fn::Sub": "arn:aws:s3:::${BucketName}"
+                            "Statement": [
+                                {
+                                    "Sid": "AllowS3Put",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "s3:PutObject"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:aws:s3:::${StrataS3BucketName}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:aws:s3:::${StrataS3BucketName}/*"
+                                        }
+                                    ]
                                 }
-                            }
-                        }
-                    },
-                    {
-                        "PolicyName": "can-use-bucket",
-                        "PolicyDocument": {
-                            "Version": "2012-10-17",
-                            "Statement": {
-                                "Effect": "Allow",
-                                "Sid": "StrataCanPutAndGet",
-                                "Action": [
-                                    "s3:PutObject",
-                                    "s3:GetObject"
-                                ],
-                                "Resource": {
-                                    "Fn::Sub": "arn:aws:s3:::${BucketName}/*"
-                                }
-                            }
+                            ]
                         }
                     }
                 ]
@@ -130,19 +114,14 @@
                         {
                             "Queue": {
                                 "Fn::GetAtt": [
-                                    "StrataFlowSQSQueue",
+                                    "StrataSQSQueue",
                                     "Arn"
                                 ]
                             },
                             "Event": "s3:ObjectCreated:*",
                             "Filter": {
                                 "S3Key": {
-                                    "Rules": [
-                                        {
-                                            "Name": "prefix",
-                                            "Value": "StrataFlowLogs/"
-                                        }
-                                    ]
+                                    "Rules": []
                                 }
                             }
                         }
@@ -176,11 +155,11 @@
                 }
             }
         },
-        "StrataFlowSQSQueue": {
+        "StrataSQSQueue": {
             "Type": "AWS::SQS::Queue",
             "Properties": {
                 "QueueName": {
-                    "Fn::Sub": "StrataFlowSQSQueue-${BucketName}"
+                    "Fn::Sub": "StrataSQSQueue-${BucketName}"
                 },
                 "Tags": [
                     {
@@ -192,7 +171,7 @@
                 ]
             }
         },
-        "SentinelFlowSQSQueuePolicyForS3": {
+        "SentinelSQSQueuePolicyForS3": {
             "Type": "AWS::SQS::QueuePolicy",
             "Properties": {
                 "PolicyDocument": {
@@ -206,7 +185,7 @@
                             "Resource": [
                                 {
                                     "Fn::GetAtt": [
-                                        "StrataFlowSQSQueue",
+                                        "StrataSQSQueue",
                                         "Arn"
                                     ]
                                 }
@@ -236,7 +215,7 @@
                             "Resource": [
                                 {
                                     "Fn::GetAtt": [
-                                        "StrataFlowSQSQueue",
+                                        "StrataSQSQueue",
                                         "Arn"
                                     ]
                                 }
@@ -256,7 +235,7 @@
                 },
                 "Queues": [
                     {
-                        "Ref": "StrataFlowSQSQueue"
+                        "Ref": "StrataSQSQueue"
                     }
                 ]
             }
@@ -275,34 +254,40 @@
         "StrataRoleArn": {
             "Value": {
                 "Fn::GetAtt": [
-                    "StrataLogsAwsIamRole",
+                    "StrataS3LoggingRole",
                     "Arn"
                 ]
             },
-            "Description": "Role ARN for Strata Role that is inserted into Amazon Web Service S3 Connector in the Strata Connectors portal."
+            "Description": "Role ARN for Illumio Role that is inserted into Amazon Web Service S3 Connector in the Illumio Connectors portal."
         },
-        "StrataFlowSQSQueueURL": {
+        "StrataSQSQueueURL": {
             "Description": "AWS SQS Queue URL that is inserted into Amazon Web Service S3 Connector in the Sentinel Data Connectors portal.",
             "Value": {
-                "Ref": "StrataFlowSQSQueue"
+                "Ref": "StrataSQSQueue"
             }
         },
-        "StrataFlowSQSQueueArn": {
+        "StrataSQSQueueArn": {
             "Description": "Log destination ARN to be used when setting up other accounts to exports logs",
             "Value": {
                 "Fn::GetAtt": [
-                    "StrataFlowSQSQueue",
+                    "StrataSQSQueue",
                     "Arn"
                 ]
             }
         },
-        "StrataFlowSQSQueueName": {
+        "StrataSQSQueueName": {
             "Description": "SQS Name",
             "Value": {
                 "Fn::GetAtt": [
-                    "StrataFlowSQSQueue",
+                    "StrataSQSQueue",
                     "QueueName"
                 ]
+            }
+        },
+        "ExternalIdOutput": {
+            "Description": "The External ID used for cross-account trust with Strata.",
+            "Value": {
+                "Ref": "ExternalId"
             }
         }
     }
