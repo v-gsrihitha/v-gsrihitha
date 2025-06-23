@@ -1,18 +1,18 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "This stack integrates Microsoft Sentinel by creating an IAM role with minimal permissions. This role allows Microsoft Sentinel to access your Imperva logs stored in an S3 bucket and SQS queue. The stack also creates an S3 bucket, an SQS Queue, and sets up S3 notifications. Additionally, it includes necessary IAM policies.",
+    "Description": "This stack integrates Microsoft Sentinel by creating an IAM role with minimal permissions. This role allows Microsoft Sentinel to access your Strata Cloud Manager logs stored in an S3 bucket and SQS queue. The stack also creates an S3 bucket, an SQS Queue, and sets up S3 notifications. Additionally, it includes necessary IAM policies.",
     "Parameters": {
         "AwsRoleName": {
             "Type": "String",
             "Description": "Enter the ARN name for the role. The name must start with 'OIDC_', otherwise the connector will not function properly.",
             "AllowedPattern": "OIDC_[-_a-zA-Z0-9]+",
-            "Default": "OIDC_IllumioLogsSentinelRole"
+            "Default": "OIDC_StrataLogsSentinelRole"
         },
         "BucketName": {
             "Type": "String",
             "AllowedPattern": "^[a-z0-9][a-z0-9-.]{1,61}[a-z0-9]$",
             "Description": "Enter the name of the S3 bucket. Bucket name must be unique within the global namespace and follow the bucket naming rules.",
-            "Default": "sentinel-illumio-logs-bucket"
+            "Default": "sentinel-strata-logs-bucket"
         },
         "ExternalId": {
             "Type": "String",
@@ -44,7 +44,7 @@
                 },
                 "Policies": [
                     {
-                        "PolicyName": "IllumioLoggingPolicy",
+                        "PolicyName": "StrataLoggingPolicy",
                         "PolicyDocument": {
                             "Version": "2012-10-17",
                             "Statement": [
@@ -258,7 +258,7 @@
                     "Arn"
                 ]
             },
-            "Description": "Role ARN for Illumio Role that is inserted into Amazon Web Service S3 Connector in the Illumio Connectors portal."
+            "Description": "Role ARN for Strata Role that is inserted into Amazon Web Service S3 Connector in the Strata Connectors portal."
         },
         "StrataSQSQueueURL": {
             "Description": "AWS SQS Queue URL that is inserted into Amazon Web Service S3 Connector in the Sentinel Data Connectors portal.",
